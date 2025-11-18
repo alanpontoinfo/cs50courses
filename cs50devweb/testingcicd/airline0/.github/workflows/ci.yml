@@ -1,4 +1,4 @@
-gname: Testing
+name: Testing
 on: push
 
 jobs:
