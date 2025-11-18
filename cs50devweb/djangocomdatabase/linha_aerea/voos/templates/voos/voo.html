@@ -1,0 +1,33 @@
+{% extends "voos/layout.html" %}
+
+{% block body %}
+   <h1> Voo {{ voo.id }} </h1>
+
+   <ul>
+    <li>Origem: {{ voo.origem }}</li>
+    <li>Destino: {{ voo.destino }}</li>
+    <li>Duracão: {{ voo.duracao }}</li>
+   </ul>
+
+      <h2>Viajantes:</h2>
+   <ul>
+      {% for viajante in viajantes %}
+      <li>{{ viajante }}</li>
+      {% empty %}
+      <li> Sem Viajantes.</li>
+   {% endfor %}
+   </ul>
+<h2>Add Viajante</h2>
+   <form action="{% url 'reserva' voo.id %}" method ="post">
+      {% csrf_token %}
+      <select name="viajante" id="">
+         {% for viajante in nao_viajantes %}
+            <option value="{{ viajante.id }}"> {{ viajante }}</option>
+         {% endfor %}
+         </select>
+         <input type="submit">
+   </form>
+   <a href="{% url 'index' %}"> Todos os Voos</a>
+   {% endblock %}
+
+
